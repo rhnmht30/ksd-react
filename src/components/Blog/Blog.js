@@ -13,7 +13,9 @@ export default class Blog extends Component {
             praesentium iusto vitae quia! Doloribus asperiores enim dolores odit
             quasi labore!
           </p>
-          <a class="btn-more text-center">See More</a>
+          <a href="https://dsckiet.tech" class="btn-more text-center">
+            See More
+          </a>
         </div>
       </div>
     );
