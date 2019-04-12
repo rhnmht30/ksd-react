@@ -99,9 +99,13 @@ export default class Navbar extends Component {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/#contact">
+                  <NavLink
+                    className="nav-link"
+                    to="/contact"
+                    activeClassName="active"
+                  >
                     Contact
-                  </Link>
+                  </NavLink>
                 </li>
                 <button
                   className="btn prime_btn"
