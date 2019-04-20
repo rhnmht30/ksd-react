@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import HomePage from "./components/HomePage/HomePage";
 import ContactPage from "./components/ContactPage/ContactPage";
-import UpcomingPage from "./components/UpcomingPage/UpcomingPage";
+import ContestsPage from "./components/ContestsPage/ContestsPage";
 import BlogsPage from "./components/BlogsPage/BlogsPage";
 import AdminAuth from "./components/AdminAuth/AdminAuth";
 import Navbar from "./components/Navbar/Navbar";
@@ -84,7 +84,11 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/contact" component={ContactPage} />
-          <Route path="/upcoming-contests" component={UpcomingPage} />
+          <Route
+            path="/contests/:id"
+            render={({ match }) => <ContestsPage match={match} />}
+          />
+          <Route path="/contests" component={ContestsPage} />
           <ProtectedRoute
             isAuth={this.state.isAuthenticated}
             path="/blogs"

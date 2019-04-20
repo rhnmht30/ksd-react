@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import "./HomePage.css";
 export default class HomePage extends Component {
   render() {
     return (
@@ -31,13 +31,15 @@ export default class HomePage extends Component {
               </p>
 
               <Link
-                to="/upcoming-contests"
-                className="btn btn-primary prime_btn"
+                to="/contests/upcoming"
+                style={{ marginBottom: "10px" }}
+                className="btn btn-outline-primary prime_btn"
               >
                 Upcoming Contests
               </Link>
               <Link
-                to="/ongoing-contests"
+                to="/contests/ongoing"
+                style={{ marginBottom: "10px" }}
                 className="btn btn-outline-info sec_btn"
               >
                 Ongoing Contests

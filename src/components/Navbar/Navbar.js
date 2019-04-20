@@ -64,37 +64,13 @@ export default class Navbar extends Component {
                   </NavLink>
                 </li>
                 <li className="nav-item dropdown">
-                  <a
-                    href="/"
-                    className="nav-link dropdown-toggle"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
+                  <NavLink
+                    className="nav-link"
+                    to="/contests"
+                    activeClassName="active"
                   >
                     Contests
-                  </a>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <NavLink
-                      className="dropdown-item"
-                      to="/upcoming-contests"
-                      activeClassName="active"
-                    >
-                      Upcoming Contests
-                    </NavLink>
-                    <div className="dropdown-divider" />
-                    <NavLink
-                      className="dropdown-item"
-                      to="/ongoing-contests"
-                      activeClassName="active"
-                    >
-                      Ongoing Contests
-                    </NavLink>
-                  </div>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink

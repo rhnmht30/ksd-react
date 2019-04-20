@@ -27,8 +27,8 @@ export const getBlogBeforeUpdate = `${apiURL}/blogs/update/`; //GET with admin a
 export const updateBlog = `${apiURL}/blogs/update/`; //POST with admin auth
 export const deleteBlog = `${apiURL}/blogs/delete/`; //GET with admin auth
 //contest
-export const ongoingContest = `${apiURL}/contest/ongoing`; //GET
-export const upcomingContest = `${apiURL}/contest/upcoming`; //GET
+export const ongoingContest = `${apiURL}/contests/ongoing`; //GET
+export const upcomingContest = `${apiURL}/contests/upcoming`; //GET
 //admin
 export const messages = `${apiURL}/admin/messages`; //GET with admin auth
 export const users = `${apiURL}/admin/users`; //GET with admin auth

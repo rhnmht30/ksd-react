@@ -1,0 +1,33 @@
+body {
+  overflow-x: hidden;
+  font-family: Montserrat;
+}
+
+.header {
+  background-image: url("https://images.pexels.com/photos/436775/pexels-photo-436775.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  background-position: top;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.23);
+}
+
+.title_home {
+  color: #ffffff;
+  font-size: 2em;
+}
+
+.header p {
+  color: white;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 800px) {
+  .coding-mojo {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .header {
+    background-size: auto;
+  }
+}
