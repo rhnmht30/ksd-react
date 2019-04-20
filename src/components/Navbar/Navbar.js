@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import { HashLink as Link } from "react-router-hash-link";
 import { NavLink } from "react-router-dom";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
 
 export default class Navbar extends Component {
   render() {
+    const responseGoogle = response => {
+      this.props.onLogin(response.profileObj);
+    };
+    const logout = () => {
+      this.props.onLogout();
+    };
     return (
       <div>
         <nav
@@ -107,13 +114,16 @@ export default class Navbar extends Component {
                     Contact
                   </NavLink>
                 </li>
-                <button
-                  className="btn prime_btn"
-                  style={{ background: "#fff", color: "#707070" }}
-                >
-                  <i className="fab fa-google" style={{ color: "#F02200" }} />{" "}
-                  Sign in with Google
-                </button>
+                {!this.props.isAuth ? (
+                  <GoogleLogin
+                    clientId="950041852674-1sj1geobh1fp6bsed16523b203umdtpu.apps.googleusercontent.com"
+                    buttonText="Sign in With Google"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                  />
+                ) : (
+                  <GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />
+                )}
               </ul>
             </div>
           </div>

@@ -82,14 +82,14 @@ export default class HomePage extends Component {
             </div>
           </div>
         </div>
-        <div class="about_kiet">
-          <div class="container pt-4 pb-4">
-            <div class="row">
-              <div class="col-md-9 col-sm-12">
-                <h5 class="title" style={{ color: "#fff" }}>
+        <div className="about_kiet">
+          <div className="container pt-4 pb-4">
+            <div className="row">
+              <div className="col-md-9 col-sm-12">
+                <h5 className="title" style={{ color: "#fff" }}>
                   About us
                 </h5>
-                <p class="description" style={{ color: "#fff" }}>
+                <p className="description" style={{ color: "#fff" }}>
                   Developer Student Club KIET is inspired by Google Developers
                   Family. We started our journey in Feb 2019. We try to engage
                   student developers through our hack events, codelabs and
@@ -99,16 +99,16 @@ export default class HomePage extends Component {
                 </p>
                 <a
                   href="https://dsckiet.tech"
-                  class="btn btn-outline-dark custom_btn"
+                  className="btn btn-outline-dark custom_btn"
                   style={{ fontWeight: "400" }}
                 >
                   Visit us at dsckiet.tech
                 </a>
               </div>
-              <div class="col-md-3 col-sm-12 pt-5">
+              <div className="col-md-3 col-sm-12 pt-5">
                 <img
                   src="./assets/images/dsc.png"
-                  class="coding-mojo"
+                  className="coding-mojo"
                   width="100%"
                   alt=""
                 />
