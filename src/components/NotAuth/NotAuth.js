@@ -6,6 +6,7 @@ class NotAuth extends Component {
       setTimeout(() => this.props.history.push("/"), 2000);
     }
   }
+
   render() {
     return (
       <div>

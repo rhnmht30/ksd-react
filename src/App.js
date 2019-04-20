@@ -33,6 +33,13 @@ class App extends Component {
     user: null
   };
 
+  componentWillMount() {
+    const tokenJSON = localStorage.getItem("token");
+    if (tokenJSON) {
+      this.setState({ isAuthenticated: true });
+    }
+  }
+
   componentDidMount() {
     axios.get(ROUTES.startHeroku).then(res => {
       this.protectedRoute();
@@ -40,6 +47,7 @@ class App extends Component {
     });
   }
 
+  //to get user details
   protectedRoute = () => {
     const tokenJSON = localStorage.getItem("token");
     if (tokenJSON) {
