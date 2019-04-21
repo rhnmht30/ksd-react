@@ -20,7 +20,7 @@ export default class BlogView extends Component {
         }
       })
       .then(res => {
-        console.log(res.data.blogs);
+        console.log(res.data.blogs.img);
         this.setState({
           blogData: res.data.blogs,
           comments: res.data.comments,
@@ -52,9 +52,8 @@ export default class BlogView extends Component {
                     borderRadius: "4px"
                   }}
                   alt=""
-                  src=""
+                  src={blogData.img ? blogData.img.url : null}
                 />
-                {/* src=blogData.img.url */}
               </div>
               <div className="col-sm-12 col-lg-7 col-md-8 col-12">
                 <p
@@ -66,7 +65,7 @@ export default class BlogView extends Component {
                     paddingTop: "0"
                   }}
                 >
-                  {blogData ? String(blogData.details) : null}
+                  {blogData.details ? String(blogData.details) : null}
                   <br />
                   <br />
                 </p>

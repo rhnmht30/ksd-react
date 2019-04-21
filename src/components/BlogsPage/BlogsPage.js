@@ -5,7 +5,8 @@ import * as ROUTES from "./../../utils/Routes";
 
 export default class BlogsPage extends Component {
   state = {
-    blogs: null
+    blogs: [],
+    filterOptions: {}
   };
 
   componentDidMount() {
@@ -21,8 +22,61 @@ export default class BlogsPage extends Component {
           Authorization: bearerToken
         }
       })
-      .then(res => this.setState({ blogs: res.data.blogs }))
-      .catch(err => console.log(err));
+      .then(res => {
+        const filterOptions = {};
+        res.data.blogs.map(blog => (filterOptions[blog.category] = false));
+        this.setState({ blogs: res.data.blogs, filterOptions });
+      });
+  };
+
+  renderFilterOptions = () => {
+    const options = Object.keys(this.state.filterOptions);
+    return options.map((option, index) => {
+      return (
+        <div className="form-check" key={index}>
+          <input
+            className="form-check-input"
+            type="checkbox"
+            name={option}
+            value={this.state.filterOptions[option]}
+            onChange={this.handleFilterChange}
+          />
+          <label className="form-check-label" htmlFor="defaultCheck1">
+            {option}
+          </label>
+        </div>
+      );
+    });
+  };
+
+  handleFilterChange = e => {
+    const val = e.target.checked;
+    const name = e.target.name;
+    let updateFilterOptions = Object.assign({}, this.state.filterOptions, {
+      [name]: val
+    });
+    this.setState({ filterOptions: updateFilterOptions });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    let filterOptions = this.state.filterOptions;
+    let applyFilter = [];
+    Object.keys(filterOptions).map(option => {
+      if (filterOptions[option] === true) {
+        applyFilter.push(option);
+      }
+      return null;
+    });
+    const token = JSON.parse(localStorage.getItem("token")).token;
+    const bearerToken = `Bearer ${token}`;
+    axios
+      .post(ROUTES.filterBlog, applyFilter, {
+        headers: {
+          Authorization: bearerToken
+        }
+      })
+      .then(res => this.setState({ blogs: res.data }));
   };
 
   render() {
@@ -57,55 +111,14 @@ export default class BlogsPage extends Component {
               <div className="row">
                 <div className="col-lg-12 col-sm-12 col-12">
                   <h6 className="title">Category</h6>
-                  <form action="">
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="defaultCheck1"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="defaultCheck1"
-                      >
-                        Web Development
-                      </label>
-                    </div>
-
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="defaultCheck1"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="defaultCheck1"
-                      >
-                        Android Development
-                      </label>
-                    </div>
-
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="defaultCheck1"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="defaultCheck1"
-                      >
-                        Machine Learning
-                      </label>
-                    </div>
+                  <form onSubmit={this.handleSubmit}>
+                    {this.renderFilterOptions()}
+                    <button type="submit" className="row btn prime_btn">
+                      Apply Filter
+                    </button>
                   </form>
                   <br />
                 </div>
-                <button className="row btn prime_btn">Apply Filter</button>
               </div>
             </div>
           </div>
