@@ -1,21 +1,23 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class Blog extends Component {
   render() {
+    const blogData = this.props.blogData;
     return (
-      <div class="col-lg-4 col-sm-6 col-12">
-        <div class="card blog__card" style={{ padding: "16px" }}>
-          <h6 class="title">Lorem ipsum dolor sit amet consectetur.</h6>
-          <span class="event_date">web development</span>
-          <p class="description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat
-            qui eligendi aperiam! Harum doloribus omnis totam magnam alias nisi,
-            praesentium iusto vitae quia! Doloribus asperiores enim dolores odit
-            quasi labore!
+      <div className="col-lg-4 col-sm-6 col-12">
+        <div className="card blog__card" style={{ padding: "16px" }}>
+          <h6 className="title">{blogData.title}</h6>
+          <span className="event_date">{blogData.category}</span>
+          <p className="description">
+            {String(blogData.details).slice(0, 200)}...
           </p>
-          <a href="https://dsckiet.tech" class="btn-more text-center">
+          <Link
+            to={`blog/view/${blogData._id}`}
+            className="btn-more text-center"
+          >
             See More
-          </a>
+          </Link>
         </div>
       </div>
     );

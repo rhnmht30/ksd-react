@@ -11,6 +11,7 @@ import Footer from "./components/Footer/Footer";
 import NotAuth from "./components/NotAuth/NotAuth";
 import * as ROUTES from "./utils/Routes";
 import axios from "axios";
+import BlogView from "./components/BlogView/BlogView";
 
 const ProtectedRoute = ({ component: Component, isAuth, ...rest }) => (
   <Route
@@ -97,10 +98,17 @@ class App extends Component {
             render={({ match }) => <ContestsPage match={match} />}
           />
           <Route path="/contests" component={ContestsPage} />
+
           <ProtectedRoute
             isAuth={this.state.isAuthenticated}
             path="/blogs"
             component={BlogsPage}
+          />
+          <ProtectedRoute
+            isAuth={this.state.isAuthenticated}
+            exact
+            path="/blog/view/:id"
+            component={BlogView}
           />
           <ProtectedRoute path="/admin" component={AdminAuth} />
           <Route
