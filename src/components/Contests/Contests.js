@@ -12,23 +12,23 @@ export default class Contests extends Component {
             <span className="event_duration">{contestInfo.Duration}</span>
           ) : null}
 
-          <p className="description">
+          <div className="description">
             {contestInfo.StartTime ? (
-              <span>
+              <div>
                 <b>Start Date</b>
                 {":"}
-                <span> {String(contestInfo.StartTime)}</span>
-              </span>
+                <div>{String(contestInfo.StartTime)}</div>
+              </div>
             ) : null}
             {/* <br style={{ marginBottom: "8px" }} /> */}
             {contestInfo.EndTime ? (
-              <span>
+              <div>
                 <b>End Date</b>
                 {":"}
-                <span> {String(contestInfo.EndTime)}</span>
-              </span>
+                <div> {String(contestInfo.EndTime)}</div>
+              </div>
             ) : null}
-          </p>
+          </div>
           <a
             href={contestInfo.url}
             className="btn-more text-center"

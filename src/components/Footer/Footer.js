@@ -13,27 +13,13 @@ export default class Footer extends Component {
                   Our Content
                 </h5>
                 <li>
-                  <Link
-                    to="/resources"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Resources
-                  </Link>
+                  <Link to="/resources">Resources</Link>
                 </li>
                 <li>
-                  <Link to="/blogs" target="_blank" rel="noopener noreferrer">
-                    Blogs
-                  </Link>
+                  <Link to="/blogs">Blogs</Link>
                 </li>
                 <li>
-                  <Link
-                    to="/contests"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Contests
-                  </Link>
+                  <Link to="/contests">Contests</Link>
                 </li>
               </div>
 

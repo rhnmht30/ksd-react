@@ -13,12 +13,11 @@ export default class ContestsPage extends Component {
 
   componentDidMount() {
     const type = this.props.match.params.id;
-    if (type === "upcoming") {
-      this.getUpcomingContest();
-    } else if (type === "ongoing") {
+    if (type === "ongoing") {
       this.getOngoingContest();
     } else {
-      console.log(type);
+      // console.log(type);
+      this.getUpcomingContest();
     }
   }
 

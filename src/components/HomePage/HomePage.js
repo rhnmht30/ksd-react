@@ -101,6 +101,8 @@ export default class HomePage extends Component {
                 </p>
                 <a
                   href="https://dsckiet.tech"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn btn-outline-dark custom_btn"
                   style={{ fontWeight: "400" }}
                 >

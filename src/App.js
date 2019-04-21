@@ -110,7 +110,11 @@ class App extends Component {
             path="/blog/view/:id"
             component={BlogView}
           />
-          <ProtectedRoute path="/admin" component={AdminAuth} />
+          <ProtectedRoute
+            isAuth={this.state.isAuthenticated}
+            path="/admin"
+            component={AdminAuth}
+          />
           <Route
             path="/notAuth"
             render={({ history }) => (
