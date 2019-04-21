@@ -12,6 +12,8 @@ import NotAuth from "./components/NotAuth/NotAuth";
 import * as ROUTES from "./utils/Routes";
 import axios from "axios";
 import BlogView from "./components/BlogView/BlogView";
+import ResourcesPage from "./components/ResourcesPage/ResourcesPage";
+import ResourceView from "./components/ResourceView/ResourceView";
 
 const ProtectedRoute = ({ component: Component, isAuth, ...rest }) => (
   <Route
@@ -98,7 +100,6 @@ class App extends Component {
             render={({ match }) => <ContestsPage match={match} />}
           />
           <Route path="/contests" component={ContestsPage} />
-
           <ProtectedRoute
             isAuth={this.state.isAuthenticated}
             path="/blogs"
@@ -112,18 +113,34 @@ class App extends Component {
           />
           <ProtectedRoute
             isAuth={this.state.isAuthenticated}
+            path="/resources"
+            component={ResourcesPage}
+          />
+          <ProtectedRoute
+            isAuth={this.state.isAuthenticated}
+            exact
+            path="/resource/view/:id"
+            component={ResourceView}
+          />
+          ResourcesPage
+          <ProtectedRoute
+            isAuth={this.state.isAuthenticated}
             path="/admin"
             component={AdminAuth}
           />
           <Route
             path="/notAuth"
             render={({ history }) => (
-              <NotAuth isAuth={this.state.isAuthenticated} history={history} />
+              <NotAuth
+                isAuth={this.state.isAuthenticated}
+                onLogin={this.handleLogin}
+                history={history}
+              />
             )}
           />
         </Switch>
         <Footer />
-        <button onClick={this.protectedRoute}>Protected</button>
+        {/* <button onClick={this.protectedRoute}>Protected</button> */}
       </div>
     );
   }
