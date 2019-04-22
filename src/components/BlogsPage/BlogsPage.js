@@ -14,19 +14,23 @@ export default class BlogsPage extends Component {
   }
 
   getAllBlogs = () => {
-    const token = JSON.parse(localStorage.getItem("token")).token;
-    const bearerToken = `Bearer ${token}`;
-    axios
-      .get(ROUTES.allBlogs, {
-        headers: {
-          Authorization: bearerToken
-        }
-      })
-      .then(res => {
-        const filterOptions = {};
-        res.data.blogs.map(blog => (filterOptions[blog.category] = false));
-        this.setState({ blogs: res.data.blogs, filterOptions });
-      });
+    const tokenJSON = localStorage.getItem("token");
+    if (tokenJSON) {
+      const token = JSON.parse(localStorage.getItem("token")).token;
+
+      const bearerToken = `Bearer ${token}`;
+      axios
+        .get(ROUTES.allBlogs, {
+          headers: {
+            Authorization: bearerToken
+          }
+        })
+        .then(res => {
+          const filterOptions = {};
+          res.data.blogs.map(blog => (filterOptions[blog.category] = false));
+          this.setState({ blogs: res.data.blogs, filterOptions });
+        });
+    }
   };
 
   renderFilterOptions = () => {

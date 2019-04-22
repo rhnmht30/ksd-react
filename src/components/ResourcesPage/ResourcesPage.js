@@ -17,28 +17,31 @@ export default class ResourcesPage extends Component {
   }
 
   getAllResources = () => {
-    const token = JSON.parse(localStorage.getItem("token")).token;
-    const bearerToken = `Bearer ${token}`;
-    axios
-      .get(ROUTES.allResources, {
-        headers: {
-          Authorization: bearerToken
-        }
-      })
-      .then(res => {
-        const filterOptions = {
-          category: {},
-          type: {}
-        };
-        res.data.resources.map(
-          resource => (filterOptions["category"][resource.category] = false)
-        );
-        res.data.resources.map(
-          resource => (filterOptions["type"][resource.type] = false)
-        );
-        console.log(res.data);
-        this.setState({ resources: res.data.resources, filterOptions });
-      });
+    const tokenJSON = localStorage.getItem("token");
+    if (tokenJSON) {
+      const token = JSON.parse(localStorage.getItem("token")).token;
+      const bearerToken = `Bearer ${token}`;
+      axios
+        .get(ROUTES.allResources, {
+          headers: {
+            Authorization: bearerToken
+          }
+        })
+        .then(res => {
+          const filterOptions = {
+            category: {},
+            type: {}
+          };
+          res.data.resources.map(
+            resource => (filterOptions["category"][resource.category] = false)
+          );
+          res.data.resources.map(
+            resource => (filterOptions["type"][resource.type] = false)
+          );
+          console.log(res.data);
+          this.setState({ resources: res.data.resources, filterOptions });
+        });
+    }
   };
 
   renderFilterOptions = value => {
