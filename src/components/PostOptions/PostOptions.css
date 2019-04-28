@@ -1,4 +1,4 @@
-a {
+/* a {
   color: #47649f;
 }
 
@@ -34,6 +34,7 @@ body {
 .post-footer-comment-wrapper {
   background-color: #f6f7f8;
 }
+*/
 .options-list {
   margin: 10px;
 }
@@ -77,10 +78,8 @@ img {
 .contact-details {
   padding-left: 20px;
   border-left: 1px solid #eee;
-
   flex: 1;
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
   justify-content: center;

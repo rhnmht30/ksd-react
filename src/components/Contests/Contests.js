@@ -7,7 +7,7 @@ export default class Contests extends Component {
       <div className="col-lg-4 col-sm-6 col-12">
         <div className="card blog__card" style={{ padding: "16px" }}>
           <h6 className="title">{contestInfo.Name}</h6>
-          <span className="event_date">{contestInfo.Platform}</span>
+          <span className="contest_provider">{contestInfo.Platform}</span>
           {contestInfo.Duration ? (
             <span className="event_duration">{contestInfo.Duration}</span>
           ) : null}

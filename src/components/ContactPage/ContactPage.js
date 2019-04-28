@@ -1,6 +1,43 @@
 import React, { Component } from "react";
-
+import * as ROUTES from "./../../utils/Routes";
+import axios from "axios";
 export default class ContactPage extends Component {
+  state = {
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  };
+
+  handleChange = e => {
+    const val = e.target.value;
+    const name = e.target.name;
+    this.setState({ [name]: val });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const token = JSON.parse(localStorage.getItem("token")).token;
+    const bearerToken = `Bearer ${token}`;
+    const payload = {
+      name: this.state.name,
+      email: this.state.email,
+      phone: this.state.phone,
+      message: this.state.message
+    };
+    axios
+      .post(ROUTES.contact, payload, {
+        headers: {
+          Authorization: bearerToken
+        }
+      })
+      .then(res => {
+        console.log(res.data.message);
+        this.setState({ name: "", email: "", phone: "", message: "" });
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <div className="fluid-container" style={{ paddingBottom: "0" }}>
@@ -26,24 +63,56 @@ export default class ContactPage extends Component {
                 <h4 className="title mt-4 mb-4">
                   Get in <span className="highlight">Touch</span>.
                 </h4>
-                <form action="/action_page.php">
+                <form>
                   <div className="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" className="form-control" id="name" />
+                    <label htmlFor="name">Name:</label>
+                    <input
+                      name="name"
+                      value={this.state.name}
+                      onChange={this.handleChange}
+                      type="text"
+                      className="form-control"
+                      id="name"
+                    />
                   </div>
                   <div className="form-group">
-                    <label for="email">Email address:</label>
-                    <input type="email" className="form-control" id="email" />
+                    <label htmlFor="email">Email address:</label>
+                    <input
+                      name="email"
+                      value={this.state.email}
+                      onChange={this.handleChange}
+                      type="email"
+                      className="form-control"
+                      id="email"
+                    />
                   </div>
                   <div className="form-group">
-                    <label for="phone">Mobile No:</label>
-                    <input type="phone" className="form-control" id="phone" />
+                    <label htmlFor="phone">Mobile No:</label>
+                    <input
+                      name="phone"
+                      value={this.state.phone}
+                      onChange={this.handleChange}
+                      type="phone"
+                      className="form-control"
+                      id="phone"
+                    />
                   </div>
                   <div className="form-group">
-                    <label for="message">Message:</label>
-                    <textarea type="" className="form-control" id="message" />
+                    <label htmlFor="message">Message:</label>
+                    <textarea
+                      name="message"
+                      value={this.state.message}
+                      onChange={this.handleChange}
+                      type=""
+                      className="form-control"
+                      id="message"
+                    />
                   </div>
-                  <button type="submit" className="btn prime_btn">
+                  <button
+                    type="submit"
+                    className="btn prime_btn"
+                    onClick={this.handleSubmit}
+                  >
                     Submit
                   </button>
                 </form>

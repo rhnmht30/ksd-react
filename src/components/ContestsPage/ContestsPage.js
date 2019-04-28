@@ -56,7 +56,7 @@ export default class ContestsPage extends Component {
                   to="/contests/ongoing"
                   onClick={this.getOngoingContest}
                   style={{ marginBottom: "10px" }}
-                  className="btn btn-outline-info sec_btn"
+                  className="btn btn-info sec_btn"
                 >
                   Ongoing Contests
                 </Link>

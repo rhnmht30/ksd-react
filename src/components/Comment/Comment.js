@@ -33,7 +33,7 @@ export default class Comment extends Component {
                 style={{ backgroundImage: `url(${comment.user.img})` }}
               />
               <div className="contact-details">
-                <h3>{comment.user.name}</h3>
+                <h5>{comment.user.name}</h5>
                 <span>{formattedDate}</span>
                 <p>{comment.comment}</p>
               </div>
@@ -44,27 +44,3 @@ export default class Comment extends Component {
     );
   }
 }
-
-// _id: "5cba022e33b0ba2312102928"
-// ​
-// comment: "GOOD"
-// ​
-// date: "2019-04-28T12:20:11.644Z"
-// ​
-// for: "5cba0214196c0c2312b7868c"
-// ​
-// user: {…}
-// ​​
-// __v: 0
-// ​​
-// _id: "5cb878da9540fc4776c4ca61"
-// ​​
-// email: "asdwer"
-// ​​
-// googleID: "12345"
-// ​​
-// img: "google.com"
-// ​​
-// name: "keshav"
-// ​​
-// role: "admin"
