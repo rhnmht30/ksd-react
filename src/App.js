@@ -14,6 +14,7 @@ import axios from "axios";
 import BlogView from "./components/BlogView/BlogView";
 import ResourcesPage from "./components/ResourcesPage/ResourcesPage";
 import ResourceView from "./components/ResourceView/ResourceView";
+import PostOptions from "./components/PostOptions/PostOptions";
 
 const ProtectedRoute = ({ component: Component, isAuth, ...rest }) => (
   <Route
@@ -138,6 +139,7 @@ class App extends Component {
               />
             )}
           />
+          <Route path="/options" component={PostOptions} />
         </Switch>
         <Footer />
         {/* <button onClick={this.protectedRoute}>Protected</button> */}

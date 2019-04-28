@@ -112,18 +112,18 @@ export default class BlogsPage extends Component {
             <br />
 
             <div className="card p-3">
-              <div className="row">
-                <div className="col-lg-12 col-sm-12 col-12">
-                  <h6 className="title">Category</h6>
-                  <form onSubmit={this.handleSubmit}>
+              <form onSubmit={this.handleSubmit}>
+                <div className="row">
+                  <div className="col-lg-12 col-sm-12 col-12">
+                    <h6 className="title">Category</h6>
                     {this.renderFilterOptions()}
-                    <button type="submit" className="row btn prime_btn">
-                      Apply Filter
-                    </button>
-                  </form>
-                  <br />
+                    <br />
+                  </div>
+                  <button type="submit" className="row btn prime_btn">
+                    Apply Filter
+                  </button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

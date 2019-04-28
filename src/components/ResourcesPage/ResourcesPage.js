@@ -107,8 +107,8 @@ export default class ResourcesPage extends Component {
             <br />
 
             <div className="card p-3">
-              <div className="row">
-                <form onSubmit={this.handleSubmit}>
+              <form onSubmit={this.handleSubmit}>
+                <div className="row">
                   <div className="col-lg-6 col-sm-6 col-12">
                     <h6 className="title">Category</h6>
                     {this.renderFilterOptions("category")}
@@ -117,13 +117,13 @@ export default class ResourcesPage extends Component {
                   <div className="col-lg-6 col-sm-6 col-12">
                     <h6 className="title">Type</h6>
                     {this.renderFilterOptions("type")}
-                    <button type="submit" className="row btn prime_btn">
-                      Apply Filter
-                    </button>
                     <br />
                   </div>
-                </form>
-              </div>
+                  <button type="submit" className="row btn prime_btn">
+                    Apply Filter
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
