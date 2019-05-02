@@ -110,7 +110,7 @@ export default class ResourcesPage extends Component {
     const bearerToken = `Bearer ${token}`;
     // "http://localhost:7002/api/v1/resources"
     axios
-      .post(ROUTES.filterBlog, applyFilter, {
+      .post(ROUTES.filterResource, applyFilter, {
         headers: {
           Authorization: bearerToken
         }
