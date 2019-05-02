@@ -6,10 +6,8 @@ import * as ROUTES from "./../../utils/Routes";
 export default class ResourcesPage extends Component {
   state = {
     resources: [],
-    filterOptions: {
-      category: {},
-      type: {}
-    }
+    filterByCat: {},
+    filterByType: {}
   };
 
   componentDidMount() {
@@ -28,24 +26,33 @@ export default class ResourcesPage extends Component {
           }
         })
         .then(res => {
-          const filterOptions = {
-            category: {},
-            type: {}
-          };
+          const filterByCat = {},
+            filterByType = {};
           res.data.resources.map(
-            resource => (filterOptions["category"][resource.category] = false)
+            resource => (filterByCat[resource.category] = false)
           );
           res.data.resources.map(
-            resource => (filterOptions["type"][resource.type] = false)
+            resource => (filterByType[resource.type] = false)
           );
-          console.log(res.data);
-          this.setState({ resources: res.data.resources, filterOptions });
+          // console.log(res.data);
+          this.setState({
+            resources: res.data.resources,
+            filterByCat,
+            filterByType
+          });
+          // console.log(this.state.filterOptions);
         });
     }
   };
 
   renderFilterOptions = value => {
-    const options = Object.keys(this.state.filterOptions[value]);
+    let filterOptions = "";
+    if (value === "category") {
+      filterOptions = "filterByCat";
+    } else {
+      filterOptions = "filterByType";
+    }
+    const options = Object.keys(this.state[filterOptions]);
     return options.map((option, index) => {
       return (
         <div className="form-check" key={index}>
@@ -53,8 +60,8 @@ export default class ResourcesPage extends Component {
             className="form-check-input"
             type="checkbox"
             name={option}
-            value={this.state.filterOptions[value][option]}
-            onChange={() => this.handleFilterChange(value)}
+            value={this.state[filterOptions]}
+            onChange={e => this.handleFilterChange(e, filterOptions)}
           />
           <label className="form-check-label" htmlFor="defaultCheck1">
             {option}
@@ -64,18 +71,58 @@ export default class ResourcesPage extends Component {
     });
   };
 
-  handleFilterChange = (e, value) => {
+  handleFilterChange = (e, filterOptions) => {
     const val = e.target.checked;
     const name = e.target.name;
-    let updateFilterOptions = Object.assign(
-      {},
-      this.state.filterOptions[value],
-      {
-        [name]: val
+    let updateFilterOptions = Object.assign({}, this.state[filterOptions], {
+      [name]: val
+    });
+    // console.log(e);
+    // console.log(val, name);
+    // console.log(name, val, this.state[filterOptions], updateFilterOptions);
+    // console.log(this.state.filterOptions, this.state.filterOptions[value]);
+    this.setState({ [filterOptions]: updateFilterOptions });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    let { filterByCat, filterByType } = this.state;
+    let applyFilter = {
+      byCat: [],
+      byType: []
+    };
+    Object.keys(filterByCat).map(option => {
+      if (filterByCat[option] === true) {
+        applyFilter.byCat.push(option);
       }
-    );
-    console.log(updateFilterOptions);
-    // this.setState({ filterOptions: updateFilterOptions });
+      return null;
+    });
+
+    Object.keys(filterByType).map(option => {
+      if (filterByType[option] === true) {
+        applyFilter.byType.push(option);
+      }
+      return null;
+    });
+
+    const token = JSON.parse(localStorage.getItem("token")).token;
+    const bearerToken = `Bearer ${token}`;
+    // "http://localhost:7002/api/v1/resources"
+    axios
+      .post(ROUTES.filterBlog, applyFilter, {
+        headers: {
+          Authorization: bearerToken
+        }
+      })
+      .then(res => {
+        if (res.data.message) {
+          // console.log("No match!");
+          alert("No match found! Try again");
+        } else {
+          this.setState({ resources: res.data });
+        }
+      });
   };
 
   render() {
