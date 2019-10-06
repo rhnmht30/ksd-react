@@ -95,8 +95,7 @@ export default class BlogsPage extends Component {
                   Blogs
                 </h5>
                 <p className="description" style={{ color: "#fff" }}>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Iste, pariatur.
+                  List of Various Resources
                 </p>
               </div>
             </div>
